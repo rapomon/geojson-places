@@ -19,14 +19,18 @@ const {
     countryAlpha3ToAlpha2,
     isValidCountryAlpha2,
     isValidCountryAlpha3,
+    getCountriesByContinentCode,
+    getCountriesByCountryGroupingCode,
     getCountryGroupings,
     getCountryGroupingByCode,
     isValidCountryGroupingCode,
     getRegionsByCountryAlpha2,
     getRegionsByCountryAlpha3,
     getRegionByCode,
+    isValidRegionCode,
     getStatesByRegionCode,
-    getStateByCode
+    getStateByCode,
+    isValidStateCode
 } = require('../src');
 
 test('Validate lookUp (Valladolid, Spain)', function(t) {
@@ -274,11 +278,47 @@ test('Validate countryAlpha3ToAlpha2', function(t) {
     t.end();
 });
 
+test('Validate getCountriesByContinentCode', function(t) {
+    const result = getCountriesByContinentCode('EU');
+    // console.log('getCountriesByContinentCode', result);
+    t.equal(result.length, 56, 'result.length should be strictly equal to 56');
+    t.equal(result[0].country_a2, 'AX', 'result[0].country_a2 should be strictly equal to "AX"');
+    t.equal(result[0].country_name, 'Aland', 'result[0].country_name should be strictly equal to "Aland"');
+    t.end();
+});
+
+test('Validate getCountriesByContinentCode [es]', function(t) {
+    const result = getCountriesByContinentCode('EU', 'es');
+    // console.log('getCountriesByContinentCode [es]', result);
+    t.equal(result.length, 56, 'result.length should be strictly equal to 56');
+    t.equal(result[0].country_a2, 'AL', 'result[0].country_a2 should be strictly equal to "AL"');
+    t.equal(result[0].country_name, 'Albania', 'result[0].country_name should be strictly equal to "Albania"');
+    t.end();
+});
+
+test('Validate getCountriesByCountryGroupingCode', function(t) {
+    const result = getCountriesByCountryGroupingCode('EMEA');
+    // console.log('getCountriesByCountryGroupingCode', result);
+    t.equal(result.length, 117, 'result.length should be strictly equal to 117');
+    t.equal(result[0].country_a2, 'AX', 'result[0].country_a2 should be strictly equal to "AX"');
+    t.equal(result[0].country_name, 'Aland', 'result[0].country_name should be strictly equal to "Aland"');
+    t.end();
+});
+
+test('Validate getCountriesByCountryGroupingCode [es]', function(t) {
+    const result = getCountriesByCountryGroupingCode('EMEA', 'es');
+    // console.log('getCountriesByCountryGroupingCode [es]', result);
+    t.equal(result.length, 117, 'result.length should be strictly equal to 117');
+    t.equal(result[0].country_a2, 'AL', 'result[0].country_a2 should be strictly equal to "AL"');
+    t.equal(result[0].country_name, 'Albania', 'result[0].country_name should be strictly equal to "Albania"');
+    t.end();
+});
+
 test('Validate getCountryGroupings', function(t) {
     const result = getCountryGroupings();
     // console.log('getCountryGroupings', result);
     t.equal(result.length, 68, 'result.length should be strictly equal to 68');
-    t.equal(result[0].grouping_code, 'AU', 'result.length should be strictly equal to "AU"');
+    t.equal(result[0].grouping_code, 'AU', 'result[0].grouping_code should be strictly equal to "AU"');
     t.equal(result[0].grouping_name, 'African Union', 'result[0].grouping_name should be strictly equal to "African Union"');
     t.end();
 });
@@ -294,7 +334,7 @@ test('Validate getCountryGroupings [es]', function(t) {
 
 test('Validate getCountryGroupingByCode [en]', function(t) {
     const result = getCountryGroupingByCode('EMEA', 'en');
-    console.log('getCountryGroupingByCode [en]', result);
+    // console.log('getCountryGroupingByCode [en]', result);
     t.equal(result.grouping_code, 'EMEA', 'result.grouping_code should be strictly equal to "EMEA"');
     t.equal(result.grouping_name, 'Europe, the Middle East and Africa', 'result.grouping_name should be strictly equal to "Europe, the Middle East and Africa"');
     t.end();
@@ -343,6 +383,20 @@ test('Validate getRegionByCode [es]', function(t) {
     t.end();
 });
 
+test('Validate isValidRegionCode return true', function(t) {
+    const result = isValidRegionCode('ES-CL');
+    // console.log('isValidRegionCode', result);
+    t.equal(result, true, 'result should be strictly equal to true');
+    t.end();
+});
+
+test('Validate isValidRegionCode return false', function(t) {
+    const result = isValidRegionCode('XX-XX');
+    // console.log('isValidRegionCode', result);
+    t.equal(result, false, 'result should be strictly equal to false');
+    t.end();
+});
+
 test('Validate getStatesByRegionCode [es]', function(t) {
     const result = getStatesByRegionCode('ES-CL', 'es');
     // console.log('getStatesByRegionCode [es]', result);
@@ -353,6 +407,20 @@ test('Validate getStatesByRegionCode [es]', function(t) {
 test('Validate getStateByCode [de]', function(t) {
     const result = getStateByCode('ES-VA', 'de');
     // console.log('getStateByCode [de]', result);
-    t.equal(result.state_code, 'ES-VA', 'result.length should be strictly equal to "ES-VA"');
+    t.equal(result.state_code, 'ES-VA', 'result.state_code should be strictly equal to "ES-VA"');
+    t.end();
+});
+
+test('Validate isValidStateCode return true', function(t) {
+    const result = isValidStateCode('ES-VA');
+    // console.log('isValidStateCode', result);
+    t.equal(result, true, 'result should be strictly equal to true');
+    t.end();
+});
+
+test('Validate isValidStateCode return false', function(t) {
+    const result = isValidStateCode('XX-XX');
+    // console.log('isValidStateCode', result);
+    t.equal(result, false, 'result should be strictly equal to false');
     t.end();
 });

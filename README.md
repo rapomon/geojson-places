@@ -580,6 +580,60 @@ console.log(countryAlpha2ToAlpha3('XX'));
 // null
 ```
 
+### getCountriesByContinentCode(continent_code, locale = null)
+
+Get the country list of the specified continent code.
+
+The function will return an array of objects with the country code in `iso-3166-2` and `iso-3166-3` format, and name.
+
+Optionally the `locale` can be specified as parameter to localize the country name (English by default).
+
+```javascript
+const { getCountriesByContinentCode } = require("geojson-places");
+// Get the country list of the Europe continent
+const result = getCountriesByContinentCode('EU');
+```
+
+Result:
+
+```javascript
+[
+  {
+    country_a2: 'AX',
+    country_a3: 'ALD',
+    country_name: 'Aland'
+  },
+  ...
+]
+```
+
+### getCountriesByCountryGroupingCode(grouping_code, locale = null)
+
+Get the country list of the specified country grouping code.
+
+The function will return an array of objects with the country code in `iso-3166-2` and `iso-3166-3` format, and name.
+
+Optionally the `locale` can be specified as parameter to localize the country name (English by default).
+
+```javascript
+const { getCountriesByCountryGroupingCode } = require("geojson-places");
+// Get the country list of the EMEA country grouping
+const result = getCountriesByCountryGroupingCode('EMEA');
+```
+
+Result:
+
+```javascript
+[
+  {
+    country_a2: 'AX',
+    country_a3: 'ALD',
+    country_name: 'Aland'
+  },
+  ...
+]
+```
+
 ### getCountryGroupings(locale = null)
 
 Get a list of [country groupings](https://en.wikipedia.org/wiki/List_of_country_groupings).
@@ -750,6 +804,18 @@ Result:
 }
 ```
 
+### isValidRegionCode(region_code)
+
+Returns boolean value depending on the specified region code is valid or not.
+
+```javascript
+const { isValidRegionCode } = require("geojson-places");
+console.log(isValidRegionCode('ES-CL'));
+// true
+console.log(isValidRegionCode('XX-XX'));
+// false
+```
+
 ### getStatesByRegionCode(region_code, locale = null)
 
 Get a list of states of the specified region by code.
@@ -801,6 +867,18 @@ Result:
   state_code: 'ES-VA',
   state_name: 'Valladolid'
 }
+```
+
+### isValidStateCode(state_code)
+
+Returns boolean value depending on the specified state code is valid or not.
+
+```javascript
+const { isValidStateCode } = require("geojson-places");
+console.log(isValidStateCode('ES-VA'));
+// true
+console.log(isValidStateCode('XX-XX'));
+// false
 ```
 
 ## Testing the library

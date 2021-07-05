@@ -192,6 +192,22 @@ const isValidCountryAlpha3 = (country_a3) => {
     return countries.find(item => item.country_a3 === country_a3) ? true : false;
 };
 
+const getCountriesByContinentCode = (continent_code, locale = null) => {
+    let continent = continents.find(item => item.continent_code === continent_code);
+    if(!continent || !continent.countries) return null;
+    let _countries = clone(countries.filter(item => continent.countries.includes(item.country_a2)));
+    translateNames(_countries, locale, 'country_name');
+    return _countries;
+};
+
+const getCountriesByCountryGroupingCode = (grouping_code, locale = null) => {
+    let countryGrouping = countryGroupings.find(item => item.grouping_code === grouping_code);
+    if(!countryGrouping || !countryGrouping.countries) return null;
+    let _countries = clone(countries.filter(item => countryGrouping.countries.includes(item.country_a2)));
+    translateNames(_countries, locale, 'country_name');
+    return _countries;
+};
+
 const getCountryGroupings = (locale = null) => {
     let _countryGroupings = clone(countryGroupings);
     translateNames(_countryGroupings, locale, 'grouping_name');
@@ -228,6 +244,10 @@ const getRegionByCode = (region_code, locale = null) => {
     return region;
 };
 
+const isValidRegionCode = (region_code) => {
+    return regions.find(item => item.region_code === region_code) ? true : false;
+};
+
 const getStatesByRegionCode = (region_code, locale = null) => {
     let region = clone(regions.find(item => item.region_code === region_code));
     let states = region.states ? region.states : [];
@@ -235,12 +255,12 @@ const getStatesByRegionCode = (region_code, locale = null) => {
     return states;
 };
 
-const getStateByCode = (code, locale = null) => {
+const getStateByCode = (state_code, locale = null) => {
     let found;
     for(let i = 0; i < regions.length; i++) {
         const region = regions[i];
         if(region.states) {
-            found = region.states.find(item => item.state_code === code);
+            found = region.states.find(item => item.state_code === state_code);
             if(found) break;
         }
     }
@@ -250,6 +270,18 @@ const getStateByCode = (code, locale = null) => {
         translateName(state, locale, 'state_name');
     }
     return state;
+};
+
+const isValidStateCode = (state_code) => {
+    let found;
+    for(let i = 0; i < regions.length; i++) {
+        const region = regions[i];
+        if(region.states) {
+            found = region.states.find(item => item.state_code === state_code);
+            if(found) break;
+        }
+    }
+    return found ? true : false;
 };
 
 module.exports = {
@@ -272,12 +304,16 @@ module.exports = {
     countryAlpha3ToAlpha2,
     isValidCountryAlpha2,
     isValidCountryAlpha3,
+    getCountriesByContinentCode,
+    getCountriesByCountryGroupingCode,
     getCountryGroupings,
     getCountryGroupingByCode,
     isValidCountryGroupingCode,
     getRegionsByCountryAlpha2,
     getRegionsByCountryAlpha3,
     getRegionByCode,
+    isValidRegionCode,
     getStatesByRegionCode,
-    getStateByCode
+    getStateByCode,
+    isValidStateCode
 };
