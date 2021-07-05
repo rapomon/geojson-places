@@ -1,0 +1,76 @@
+{
+  "_from": "geojson-places",
+  "_location": "/geojson-places",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "geojson-places",
+    "name": "geojson-places",
+    "escapedName": "geojson-places",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "author": {
+    "name": "Raúl Polanco Montiel",
+    "email": "rapomon@gmail.com",
+    "url": "https://github.com/rapomon"
+  },
+  "bugs": {
+    "url": "https://github.com/rapomon/geojson-places/issues"
+  },
+  "deprecated": false,
+  "description": "This module takes a latitude and longitude and determine the location where it is contained (continent, country, region and state). This module also has tools to get i18n names of continents, country groupings, countries, regions and states.",
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/eslint-parser": "^7.14.7",
+    "@turf/turf": "^6.4.0",
+    "cli-color": "^2.0.0",
+    "i18n-iso-countries": "^6.8.0",
+    "iso3166-2-db": "^2.3.7",
+    "tap-spec": "^5.0.0",
+    "tape": "^5.2.2"
+  },
+  "homepage": "https://github.com/rapomon/geojson-places",
+  "keywords": [
+    "local",
+    "reverse",
+    "geocoder",
+    "geolocalizer",
+    "geocoding",
+    "i18n",
+    "l10n",
+    "iso-3166-1",
+    "iso-3166-2",
+    "continent",
+    "country",
+    "country grouping",
+    "region",
+    "state",
+    "geojson",
+    "polygon",
+    "latitude",
+    "longitude"
+  ],
+  "license": "ISC",
+  "main": "src/index.js",
+  "name": "geojson-places",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rapomon/geojson-places.git"
+  },
+  "scripts": {
+    "test": "tape ./test/*spec.js | tap-spec",
+    "build": "node ./src/build.js",
+    "lint": "eslint . --ext .js"
+  },
+  "version": "1.0.0",
+  "dependencies": {
+    "just-clone": "^3.2.1"
+  }
+}
