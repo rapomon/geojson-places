@@ -2,7 +2,7 @@
 
 This module can do the following tasks:
 
-* Takes a latitude and longitude and determine the state, region, country, country grouping or continent where it is contained.
+* Reverse geocoding to determine the state, region, country, country grouping or continent where it is contained from the latitude and longitude specified.
 * Get a list of continents with code and name localized, also a list of iso-3166-2 country codes contained in each continent.
 * Get a list of country groupings with code and name localized, also a list of iso-3166-2 country codes contained in each continent.
 * Get a list of countries with iso-3166-2, iso-3166-3 and name localized.
@@ -14,7 +14,7 @@ This module can do the following tasks:
 ## Install
 
 ```bash
-npm install --save geojson-spaces
+npm install --save geojson-places
 ```
 
 ## Methods
@@ -836,7 +836,7 @@ After downloaded the file you need to convert all the collection to a geojson fi
 ## Acknowledgment
 
 * GeoJSON with all state polygons extracted from [Natural Earth Data](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/).
-
 * All state polygons have been joined to create the regions, countries, country groupings and continents using the library [Turf](http://turfjs.org/).
-
 * Checks if a point is contained in a polygon, based on the [Jordan curve theorem](https://en.wikipedia.org/wiki/Jordan_curve_theorem).
+* Country names i18n obtained from [i18n-iso-countries](https://www.npmjs.com/package/i18n-iso-countries) module.
+* Region names i18n obtained from [iso3166-2-db](https://www.npmjs.com/package/iso3166-2-db) module.
