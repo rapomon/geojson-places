@@ -348,6 +348,31 @@ const generateAdmin1 = async () => {
                     i18n[locale] = value;
                 }
             });
+            props.iso_3166_2 = props.iso_3166_2.replace('~', '');
+            // Anguilla minor island
+            if(props.iso_3166_2 === 'AI-X00') {
+                props.name = 'Anguilla minor island';
+            }
+            // Antarctica minor island
+            if(props.iso_3166_2 === 'AQ-X02') {
+                props.name = 'Antarctica minor island';
+            }
+            // Colombia minor island
+            if(props.iso_3166_2 === 'CO-X01') {
+                props.name = 'Colombia minor island';
+            }
+            // Mexico minor island
+            if(props.iso_3166_2 === 'MX-X01') {
+                props.name = 'Mexico minor island';
+            }
+            // Russia minor island
+            if(props.iso_3166_2 === 'RU-X01') {
+                props.name = 'Russia minor island';
+            }
+            // Venezuela minor island
+            if(props.iso_3166_2 === 'VE-X01') {
+                props.name = 'Venezuela minor island';
+            }
             region.states.push({
                 state_code: props.iso_3166_2,
                 state_name: props.name,

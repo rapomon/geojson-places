@@ -725,6 +725,69 @@ console.log(isValidCountryGroupingCode('X'));
 // false
 ```
 
+### getRegions(locale = null)
+
+Get a list of all regions.
+
+The function will return an array of objects with each country `iso-3166-2` code, region code and name, always ordered by region name.
+
+Optionally the `locale` can be specified as parameter to localize the region names (English by default).
+
+```javascript
+const { getRegions } = require("geojson-places");
+// Get all regions
+const result = getRegions();
+```
+
+Result:
+
+```javascript
+[
+  { country_a2: 'ES', region_code: 'ES-AN', region_name: 'Andalusia' },
+  { country_a2: 'ES', region_code: 'ES-AR', region_name: 'Aragon' },
+  { country_a2: 'ES', region_code: 'ES-AS', region_name: 'Asturias' },
+  ...
+]
+```
+
+### getRegionsAndStates(locale = null)
+
+Get a list of all regions with the states of each region.
+
+The function will return an array of objects with each country `iso-3166-2` code, region code, name and an array of states, always ordered by region name, and state name.
+
+Optionally the `locale` can be specified as parameter to localize the region names and state names (English by default).
+
+```javascript
+const { getRegionsAndStates } = require("geojson-places");
+// Get all regions and states
+const result = getRegionsAndStates();
+```
+
+Result:
+
+```javascript
+[
+  {
+    country_a2: 'ES',
+    region_code: 'ES-CL',
+    region_name: 'Castilla y León',
+    states: [
+      { state_code: 'ES-BU', state_name: 'Burgos' },
+      { state_code: 'ES-LE', state_name: 'León' },
+      { state_code: 'ES-P' , state_name: 'Palencia' },
+      { state_code: 'ES-SA', state_name: 'Salamanca' },
+      { state_code: 'ES-SG', state_name: 'Segovia' },
+      { state_code: 'ES-SO', state_name: 'Soria' },
+      { state_code: 'ES-VA', state_name: 'Valladolid' },
+      { state_code: 'ES-ZA', state_name: 'Zamora' },
+      { state_code: 'ES-AV', state_name: 'Ávila' }
+    ]
+  },
+  ...
+]
+```
+
 ### getRegionsByCountryAlpha2(alpha2, locale = null)
 
 Get a list of regions of the specified country by `iso-3166-2` code.

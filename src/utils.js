@@ -101,7 +101,7 @@ const getRegionCode = (props) => {
 };
 
 const getRegionName = (props) => {
-    return props.region_cod ? (props.woe_name ? props.woe_name : props.region) : props.admin;
+    return props.region_cod ? (props.woe_name ? props.woe_name : (props.region ? props.region : props.name)) : props.admin;
 };
 
 const getStateAlpha2 = (props) => {

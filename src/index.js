@@ -225,6 +225,20 @@ const isValidCountryGroupingCode = (grouping_code) => {
     return countryGroupings.find(item => item.grouping_code === grouping_code) ? true : false;
 };
 
+const getRegions = (locale = null) => {
+    let _regions = clone(regions);
+    translateNames(_regions, locale, 'region_name');
+    _regions.forEach(region => delete region.states);
+    return _regions;
+};
+
+const getRegionsAndStates = (locale = null) => {
+    let _regions = clone(regions);
+    translateNames(_regions, locale, 'region_name');
+    _regions.forEach(region => translateNames(region.states, locale, 'state_name'));
+    return _regions;
+};
+
 const getRegionsByCountryAlpha2 = (alpha2, locale = null) => {
     let _regions = clone(regions.filter(item => item.country_a2 === alpha2));
     translateNames(_regions, locale, 'region_name');
@@ -309,6 +323,8 @@ module.exports = {
     getCountryGroupings,
     getCountryGroupingByCode,
     isValidCountryGroupingCode,
+    getRegions,
+    getRegionsAndStates,
     getRegionsByCountryAlpha2,
     getRegionsByCountryAlpha3,
     getRegionByCode,
