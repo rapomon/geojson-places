@@ -31,7 +31,7 @@
     "@babel/eslint-parser": "^7.14.7",
     "@turf/turf": "^6.4.0",
     "cli-color": "^2.0.0",
-    "i18n-iso-countries": "^6.8.0",
+    "i18n-iso-countries": "^7.5.0",
     "iso3166-2-db": "^2.3.7",
     "tap-spec": "^5.0.0",
     "tape": "^5.2.2"
@@ -45,8 +45,8 @@
     "geocoding",
     "i18n",
     "l10n",
-    "iso-3166-1",
     "iso-3166-2",
+    "iso-3166-3",
     "continent",
     "country",
     "country grouping",
@@ -69,8 +69,8 @@
     "build": "node ./src/build.js",
     "lint": "eslint . --ext .js"
   },
-  "version": "1.0.3",
+  "version": "1.0.4",
   "dependencies": {
-    "just-clone": "^3.2.1"
+    "just-clone": "^6.1.1"
   }
 }

@@ -85,7 +85,7 @@ const getContinentGeoJSONByCode = (continent_code, simplified = false) => {
         const continent = fs.readFileSync(path.join(dataPath, filePath));
         return JSON.parse(continent);
     } catch(e) {
-        console.error(e);
+        // console.error(e);
         return null;
     }
 };
@@ -95,7 +95,7 @@ const getCountryGeoJSONByAlpha2 = (alpha2) => {
         const country = fs.readFileSync(path.join(dataPath, `/countries/${alpha2}.json`));
         return JSON.parse(country);
     } catch(e) {
-        console.error(e);
+        // console.error(e);
         return null;
     }
 };
@@ -111,7 +111,7 @@ const getCountryGroupingGeoJSONByCode = (grouping_code, simplified = false) => {
         const countryGrouping = fs.readFileSync(path.join(dataPath, filePath));
         return JSON.parse(countryGrouping);
     } catch(e) {
-        console.error(e);
+        // console.error(e);
         return null;
     }
 };
@@ -121,7 +121,7 @@ const getRegionGeoJSONByCode = (region_code) => {
         const region = fs.readFileSync(path.join(dataPath, `/regions/${region_code}.json`));
         return JSON.parse(region);
     } catch(e) {
-        console.error(e);
+        // console.error(e);
         return null;
     }
 };
@@ -264,9 +264,8 @@ const isValidRegionCode = (region_code) => {
 
 const getStatesByRegionCode = (region_code, locale = null) => {
     let region = clone(regions.find(item => item.region_code === region_code));
-    let states = region.states ? region.states : [];
-    translateNames(states, locale, 'state_name');
-    return states;
+    translateNames(region.states, locale, 'state_name');
+    return region.states;
 };
 
 const getStateByCode = (state_code, locale = null) => {

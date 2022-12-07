@@ -17,6 +17,10 @@ This module can do the following tasks:
 npm install --save geojson-places
 ```
 
+## API implementation
+
+I have prepared a complete implementation of the library to consume from a Node based API [geojson-places-api](https://github.com/rapomon/geojson-places-api), as an example or to deploy in a production environment. The API is developed with the [Fastify](https://www.fastify.io) framework.
+
 ## Methods
 
 ### lookUp(latitude, longitude)
@@ -954,11 +958,7 @@ npm run test
 
 ## Building the resources
 
-```bash
-npm run build
-```
-
-It will regenerate and/or update the following project files:
+There is a script to regenerate and/or update the following project files:
 
 ```bash
 \data\countries\*
@@ -970,9 +970,17 @@ It will regenerate and/or update the following project files:
 
 Note that the country names will be localized using the module [i18n-iso-countries](https://github.com/michaelwittig/node-i18n-iso-countries).
 
-The project file `/data/build.json` must be downloaded from [Admin 1 – States, Provinces](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/), this is the [direct link](https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_1_states_provinces.zip).
+The project file `/data/build.json` must be downloaded from [Admin 1 – States, Provinces](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/) (click on `Download states and provinces`), this is the [direct link](https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_1_states_provinces.zip).
 
-After downloaded the file you need to convert all the collection to a geojson file, using any tool, and replace the project file `/data/build.json` with this one.
+After downloaded the file you need to convert all the collection to a geojson file, using for example the online [mapsharper.org](https://mapshaper.org/) tool.
+
+After converting the zip file to json file, the project file `/data/build.json` must be replaced by this one.
+
+Now we are ready to launch the build (It may take a couple of days 😮):
+
+```bash
+npm run build
+```
 
 ## Acknowledgment
 

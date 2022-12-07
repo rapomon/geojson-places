@@ -261,6 +261,11 @@ const generateAdmin1 = async () => {
         if(props.iso_3166_2 === 'VE-X01~') {
             props.code_hasc = 'VE-01';
         }
+        // Fix New Zealand -> Tokelau (alpha3 code)
+        if(props.iso_a2 === 'TK') {
+            props.adm0_a3 = 'TKL';
+            props.admin = 'Tokelau';
+        }
         props.region_code = getRegionCode(props);
         props.region_name = getRegionName(props);
         props.iso_3166_2 = getStateAlpha2(props);
