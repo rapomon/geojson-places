@@ -253,6 +253,7 @@ const getRegionsByCountryAlpha3 = (alpha3, locale = null) => {
 
 const getRegionByCode = (region_code, locale = null) => {
     let region = clone(regions.find(item => item.region_code === region_code));
+    if(!region) return region;
     translateName(region, locale, 'region_name');
     translateNames(region.states, locale, 'state_name');
     return region;
@@ -264,6 +265,7 @@ const isValidRegionCode = (region_code) => {
 
 const getStatesByRegionCode = (region_code, locale = null) => {
     let region = clone(regions.find(item => item.region_code === region_code));
+    if(!region) return region;
     translateNames(region.states, locale, 'state_name');
     return region.states;
 };
