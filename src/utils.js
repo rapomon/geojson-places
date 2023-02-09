@@ -56,7 +56,7 @@ const sortObjectArray = (arr, ignoreCase = false, property = null) => {
             x = x.toLowerCase();
             y = y.toLowerCase();
         }
-        return x < y ? -1 : x > y ? 1 : 0;
+        return x < y ? -1 : (x > y ? 1 : 0);
     });
 };
 

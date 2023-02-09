@@ -18,29 +18,46 @@ const reverseGeolocation = (lat, lng, dataType = null) => {
     let i = 0;
     let found = false;
     const countries = admin1.features;
-    do {
-        let country = countries[i];
+    for(const country of countries) {
         if(country.geometry.type === 'Polygon') {
             found = pointInPolygon(country.geometry.coordinates[0], point);
+            if(found && country.geometry.coordinates.length > 1) {
+                // Exclude holes
+                for(let j = 1; j < country.geometry.coordinates.length; j++) {
+                    if(pointInPolygon(country.geometry.coordinates[j], point)) {
+                        found = false;
+                        break;
+                    }
+                }
+            }
         } else if(country.geometry.type === 'MultiPolygon') {
-            let j = 0;
-            do {
-                found = pointInPolygon(country.geometry.coordinates[j][0], point);
-                j++;
-            } while(j < country.geometry.coordinates.length && !found);
+            for(const coords of country.geometry.coordinates) {
+                found = pointInPolygon(coords[0], point);
+                if(found && coords.length > 1) {
+                    // Exclude holes
+                    for(let j = 1; j < coords.length; j++) {
+                        if(pointInPolygon(coords[j], point)) {
+                            found = false;
+                            break;
+                        }
+                    }
+                }
+                if(found) break;
+            }
         }
+        if(found) break;
         i++;
-    } while(i < countries.length && !found);
+    }
 
     let result = null;
     if(found) {
         if(dataType === 'raw') {
             result = {
                 type: 'FeatureCollection',
-                features: [ clone(countries[i-1]) ]
+                features: [ clone(countries[i]) ]
             };
         } else {
-            let props = countries[i-1].properties;
+            let props = countries[i].properties;
             let properties = {};
             properties.continent_code = props.cont_code;
             properties.country_a2 = props.iso_a2;
@@ -55,7 +72,7 @@ const reverseGeolocation = (lat, lng, dataType = null) => {
                     features: [{
                         type: 'Feature',
                         properties,
-                        geometry: clone(countries[i-1].geometry)
+                        geometry: clone(countries[i].geometry)
                     }]
                 };
             } else {
