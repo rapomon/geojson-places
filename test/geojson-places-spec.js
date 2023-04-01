@@ -281,7 +281,7 @@ test('Validate countryAlpha3ToAlpha2', function(t) {
 test('Validate getCountriesByContinentCode', function(t) {
     const result = getCountriesByContinentCode('EU');
     // console.log('getCountriesByContinentCode', result);
-    t.equal(result.length, 56, 'result.length should be strictly equal to 56');
+    t.equal(result.length, 57, 'result.length should be strictly equal to 57');
     t.equal(result[0].country_a2, 'AX', 'result[0].country_a2 should be strictly equal to "AX"');
     t.equal(result[0].country_name, 'Aland', 'result[0].country_name should be strictly equal to "Aland"');
     t.end();
@@ -290,7 +290,7 @@ test('Validate getCountriesByContinentCode', function(t) {
 test('Validate getCountriesByContinentCode [es]', function(t) {
     const result = getCountriesByContinentCode('EU', 'es');
     // console.log('getCountriesByContinentCode [es]', result);
-    t.equal(result.length, 56, 'result.length should be strictly equal to 56');
+    t.equal(result.length, 57, 'result.length should be strictly equal to 57');
     t.equal(result[0].country_a2, 'AL', 'result[0].country_a2 should be strictly equal to "AL"');
     t.equal(result[0].country_name, 'Albania', 'result[0].country_name should be strictly equal to "Albania"');
     t.end();

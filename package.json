@@ -27,8 +27,8 @@
   "deprecated": false,
   "description": "Reverse geocoding to determine the location where it is contained (continent, country, region and state) from the latitude and longitude specified. This module also has tools to get lists of continents, country groupings, countries, regions and states in the specified language.",
   "devDependencies": {
-    "@babel/core": "^7.20.12",
-    "@babel/eslint-parser": "^7.19.1",
+    "@babel/core": "^7.21.4",
+    "@babel/eslint-parser": "^7.21.3",
     "@turf/turf": "^6.5.0",
     "cli-color": "^2.0.3",
     "i18n-iso-countries": "^7.5.0",
@@ -69,7 +69,7 @@
     "build": "node ./src/build.js",
     "lint": "eslint . --ext .js"
   },
-  "version": "1.0.7",
+  "version": "1.0.8",
   "dependencies": {
     "just-clone": "^6.2.0"
   }
