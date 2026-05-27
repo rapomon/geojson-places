@@ -14,6 +14,16 @@ const reverseGeolocation = (lat, lng, dataType = null) => {
         return new Error('Wrong coordinates (lat: ' + lat + ',lng: ' + lng + ')');
     }
 
+    // Validate latitude range
+    if (lat < -90 || lat > 90) {
+        throw new Error(`Latitude must be between -90 and 90 degrees (received lat: ${lat})`);
+    }
+
+    // Validate longitude range
+    if (lng < -180 || lng > 180) {
+        throw new Error(`Longitude must be between -180 and 180 degrees (received lng: ${lng})`);
+    }
+
     let point = [lng, lat];
     let i = 0;
     let found = false;
